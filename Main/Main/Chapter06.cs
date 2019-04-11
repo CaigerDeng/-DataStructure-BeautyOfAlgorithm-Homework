@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Chapter06+07
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -43,12 +45,18 @@ namespace Chapter06
             //tt.MakeLoop(2);
             //Console.WriteLine("Has Loop:{0}", tt.HasLoop());
 
-            SingleLinkedList<int> tt = new SingleLinkedList<int>(1, 2, 3, 2, 1);
-            Console.WriteLine("Is Huiwen:{0}", IsHuiwen(tt));
-            tt.PrintAll();
+            //SingleLinkedList<int> tt = new SingleLinkedList<int>(1, 2, 3, 2, 1);
+            //Console.WriteLine("Is Huiwen:{0}", IsHuiwen(tt));
+            //tt.PrintAll();
+
+            SingleLinkedList<int> tt = new SingleLinkedList<int>(1, 2, 5);
+            SingleLinkedList<int> ss = new SingleLinkedList<int>(3, 4, 4);
+            SingleLinkedList<int> hh = MergeSortedTwo(tt, ss);
+            hh.PrintAll();
 
         }
 
+        //LRU缓存清除算法
         static public void LRU(SingleLinkedList<int> sll, int val, int capacity)
         {
             if (sll.First != null && sll.First.Val == val)
@@ -68,6 +76,7 @@ namespace Chapter06
 
         }
 
+        //是否回文
         static public bool IsHuiwen(SingleLinkedList<int> sll)
         {
             if (sll.Length <= 1)
@@ -119,6 +128,65 @@ namespace Chapter06
             }
             sll.Head.Next = pre;
             return res;
+        }
+
+        //合并两个有序单链表
+        static public SingleLinkedList<int> MergeSortedTwo(SingleLinkedList<int> s1, SingleLinkedList<int> s2)
+        {
+            if (s1.Length == 0)
+            {
+                return s2;
+            }
+            if (s2.Length == 0)
+            {
+                return s1;
+            }
+            Node<int> temp1 = s1.First;
+            Node<int> temp2 = s2.First;
+            SingleLinkedList<int> list = new SingleLinkedList<int>();
+            Node<int> endNode = list.Head;
+            Node<int> temp = null;
+            while (true)
+            {
+                if (temp1.Val < temp2.Val)
+                {
+                    temp = temp1;
+                    temp1 = temp1.Next;
+                }
+                else
+                {
+                    temp = temp2;
+                    temp2 = temp2.Next;
+                }
+                Node<int> node = new Node<int>(temp.Val);
+                endNode.Next = node;
+                endNode = node;
+                if (temp1 == null || temp2 == null)
+                {
+                    break;
+                }
+            }
+            if (temp1 == null)
+            {
+                endNode.Next = temp2;
+            }
+            else
+            {
+                endNode.Next = temp1;
+            }
+            return list;
+        }
+
+        static public void PrintByNode(Node<int> headNode)
+        {
+            var p = headNode;
+            while (p != null)
+            {
+                Console.Write(p.Val + " ");
+                p = p.Next;
+            }
+            Console.WriteLine("打印完毕");
+
         }
 
     }
@@ -187,7 +255,6 @@ namespace Chapter06
             Node<T> p = new Node<T>(newItem);
             var q = First;
             p.Next = q;
-            Head.Next = p;
             Head.Next = p;
             Length++;
             return p;
@@ -310,6 +377,10 @@ namespace Chapter06
 
         }
 
+        /// <summary>
+        /// 在指定位置 制造环
+        /// </summary>
+        /// <param name="loopBeginPosition"></param>
         public void MakeLoop(int loopBeginPosition = 1)
         {
             var endNode = Find(Length);
@@ -317,6 +388,10 @@ namespace Chapter06
             endNode.Next = beginNode;
         }
 
+        /// <summary>
+        /// 检测是否有环
+        /// </summary>
+        /// <returns></returns>
         public bool HasLoop()
         {
             if (Length < 2)
