@@ -1,0 +1,11 @@
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\bin\Debug\netcoreapp2.1\Main.deps.json
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\bin\Debug\netcoreapp2.1\Main.runtimeconfig.json
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\bin\Debug\netcoreapp2.1\Main.runtimeconfig.dev.json
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\bin\Debug\netcoreapp2.1\Main.dll
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\bin\Debug\netcoreapp2.1\Main.pdb
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\obj\Debug\netcoreapp2.1\Main.csprojAssemblyReference.cache
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\obj\Debug\netcoreapp2.1\Main.csproj.CoreCompileInputs.cache
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\obj\Debug\netcoreapp2.1\Main.AssemblyInfoInputs.cache
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\obj\Debug\netcoreapp2.1\Main.AssemblyInfo.cs
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\obj\Debug\netcoreapp2.1\Main.dll
+C:\MyVSProject\《数据结构与算法之美》测试\Main\Main\obj\Debug\netcoreapp2.1\Main.pdb
