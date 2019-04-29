@@ -28,25 +28,32 @@ namespace Chapter23
             //tree.PrintLevel(tree.root);
             //Console.WriteLine();
 
-            int[] arr = { 1, 2, 3, 4, 5, 6 };
-            CompleteBinaryTree_Arr tree = new CompleteBinaryTree_Arr();
+            //int[] arr = { 1, 2, 3, 4, 5, 6 };
+            //CompleteBinaryTree_Arr tree = new CompleteBinaryTree_Arr();
+            //tree.Create(arr);
+            //Console.WriteLine("前序打印:");
+            //tree.PrintPre(0);
+            //Console.WriteLine();
+
+            //Console.WriteLine("中序打印:");
+            //tree.PrintIn(0);
+            //Console.WriteLine();
+
+            //Console.WriteLine("后序打印:");
+            //tree.PrintPost(0);
+            //Console.WriteLine();
+
+            //Console.WriteLine("层次打印:");
+            //tree.PrintLevel(0);
+            //Console.WriteLine();
+
+
+            int[] arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 };
+            CompleteBinaryTree_LinkedList tree = new CompleteBinaryTree_LinkedList();
             tree.Create(arr);
-            Console.WriteLine("前序打印:");
-            tree.PrintPre(0);
-            Console.WriteLine();
-
-            Console.WriteLine("中序打印:");
-            tree.PrintIn(0);
-            Console.WriteLine();
-
-            Console.WriteLine("后序打印:");
-            tree.PrintPost(0);
-            Console.WriteLine();
-
             Console.WriteLine("层次打印:");
-            tree.PrintLevel(0);
+            tree.PrintLevel(tree.root);
             Console.WriteLine();
-
 
         }
     }
@@ -57,6 +64,7 @@ namespace Chapter23
         public Node left;
         public Node right;
 
+        //求前驱结点或后继结点，需要记录父节点
         public Node(int value)
         {
             val = value;
@@ -110,7 +118,7 @@ namespace Chapter23
             PrintPre(node.right);
         }
 
-        //打印中序遍历 （会先打印左下方结点）
+        //打印中序遍历 （会先打印左下方节点）
         public void PrintIn(Node node)
         {
             if (node == null)
@@ -122,7 +130,7 @@ namespace Chapter23
             PrintIn(node.right);
         }
 
-        //打印后序遍历 （会先打印左下方结点）
+        //打印后序遍历 （会先打印左下方节点）
         public void PrintPost(Node node)
         {
             if (node == null)
@@ -135,14 +143,22 @@ namespace Chapter23
         }
 
         //打印 层级遍历
+        //顺便计算了有多少层
         public void PrintLevel(Node node)
         {
             //借助队列
+            int level = 0;
+            int startIndex = 0;
+            int endIndex = 0;
+
             Queue<Node> qu = new Queue<Node>();
             qu.Enqueue(node);
+            endIndex++;
             while (qu.Count > 0)
             {
                 Node temp = qu.Dequeue();
+                startIndex++;
+
                 Console.Write(temp.val + " ");
                 if (temp.left != null)
                 {
@@ -152,7 +168,17 @@ namespace Chapter23
                 {
                     qu.Enqueue(temp.right);
                 }
+                if (startIndex == endIndex)
+                {
+                    level++;
+                    //reset
+                    startIndex = 0;
+                    endIndex = qu.Count;
+                }
+
             }
+            Console.WriteLine("level:{0}", level);
+
         }
 
     }
@@ -181,7 +207,7 @@ namespace Chapter23
             PrintPre(rightIndex);
         }
 
-        //打印中序遍历 （会先打印左下方结点）
+        //打印中序遍历 （会先打印左下方节点）
         public void PrintIn(int index)
         {
             if (index >= data.Length)
@@ -195,7 +221,7 @@ namespace Chapter23
             PrintIn(rightIndex);
         }
 
-        //打印后序遍历 （会先打印左下方结点）
+        //打印后序遍历 （会先打印左下方节点）
         public void PrintPost(int index)
         {
             if (index >= data.Length)
