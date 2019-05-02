@@ -17,7 +17,7 @@ namespace Chapter24
 
     public class BinarySearchTree
     {
-        public Node root;
+        private Node root;
 
         public Node Find(int val)
         {

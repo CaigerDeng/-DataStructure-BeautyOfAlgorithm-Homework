@@ -27,7 +27,7 @@ namespace Chapter12
 
         }
 
-        //合并排序
+        //归并排序
         static public void MergeSort(int[] arr, int n)
         {
             if (n <= 1)
