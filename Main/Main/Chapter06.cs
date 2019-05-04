@@ -49,10 +49,16 @@ namespace Chapter06
             //Console.WriteLine("Is Huiwen:{0}", IsHuiwen(tt));
             //tt.PrintAll();
 
-            SingleLinkedList<int> tt = new SingleLinkedList<int>(1, 2, 5);
-            SingleLinkedList<int> ss = new SingleLinkedList<int>(3, 4, 4);
-            SingleLinkedList<int> hh = MergeSortedTwo(tt, ss);
-            hh.PrintAll();
+            //SingleLinkedList<int> tt = new SingleLinkedList<int>(1, 2, 5);
+            //SingleLinkedList<int> ss = new SingleLinkedList<int>(3, 4, 4);
+            //SingleLinkedList<int> hh = MergeSortedTwo(tt, ss);
+            //hh.PrintAll();
+
+            SingleLinkedList<int> tt = new SingleLinkedList<int>();
+            tt.Insert(tt.Length,1);
+            tt.Insert(tt.Length, 2);
+            tt.Insert(tt.Length, 5);
+            tt.PrintAll();
 
         }
 
@@ -263,11 +269,18 @@ namespace Chapter06
         //从position后插入
         public Node<T> Insert(int position, T newItem)
         {
-            var p = Find(position);
-            if (p == null)
+            if (position < 0 || position > Length)
             {
                 return null;
             }
+            var p = Head;
+            //前进
+            int pos = 1;
+            while (p != null && pos <= position)
+            {
+                p = p.Next;
+                pos++;
+            }          
             var q = new Node<T>(newItem);
             q.Next = p.Next;
             p.Next = q;
