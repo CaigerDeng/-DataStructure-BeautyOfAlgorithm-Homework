@@ -11,6 +11,7 @@ using Chapter15;
 using Chapter17;
 using Chapter18;
 using Chapter23;
+using Chapter24;
 using Chapter25;
 using Chapter27;
 using Chapter28;
@@ -28,7 +29,7 @@ namespace Main
 
         static void Main(string[] args)
         {
-            TestChapter32.Run();
+            TestChapter12.Run();
 
 
 

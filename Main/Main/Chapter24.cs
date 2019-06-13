@@ -9,7 +9,17 @@ namespace Chapter24
     {
         static public void Run()
         {
-
+            BinarySearchTree bb = new BinarySearchTree();
+            bb.Insert(5);
+            bb.Insert(3);
+            bb.Insert(7);
+            bb.Insert(6);
+            bb.Insert(9);
+            bb.PrintPre(bb.root);
+            Console.WriteLine();
+            bb.Delete(7);
+            bb.PrintPre(bb.root);
+            Console.WriteLine();
 
         }
 
@@ -17,7 +27,7 @@ namespace Chapter24
 
     public class BinarySearchTree
     {
-        private Node root;
+        public Node root;
 
         public Node Find(int val)
         {
@@ -103,6 +113,7 @@ namespace Chapter24
                     nn = n;
                     n = n.left;
                 }
+                p.val = n.val;
                 p = n;
                 pp = nn;
             }
@@ -135,6 +146,16 @@ namespace Chapter24
             }
         }
 
+        public void PrintPre(Node n)
+        {
+            if (n == null)
+            {
+                return;
+            }
+            Console.Write(n.val + " ");
+            PrintPre(n.left);
+            PrintPre(n.right);
+        }
 
     }
 

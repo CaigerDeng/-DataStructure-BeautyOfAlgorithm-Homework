@@ -38,8 +38,8 @@ namespace Chapter31
             graph.Follow(7, 5);
             graph.Follow(7, 6);
 
-            //BFS(graph, 0, 6);
-            DFS(graph,0,6);
+            BFS(graph, 0, 6);
+            //DFS(graph,0,6);
 
         }
 

@@ -13,17 +13,17 @@ namespace Chapter12
             //int[] b = { 1, 9 };
             //PrintArr(Merge(arr, a, b));
 
-            //int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            //MergeSort(arr, arr.Length);
-            //PrintArr(arr);
-
             int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            QuickSort(arr, arr.Length);
+            MergeSort(arr, arr.Length);
             PrintArr(arr);
 
-            Console.WriteLine(">>>>>>>>>>>>>FindMaxK");
-            int[] yoyo = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            Console.WriteLine("res:{0}", FindMaxK(yoyo, 3));
+            //int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
+            //QuickSort(arr, arr.Length);
+            //PrintArr(arr);
+
+            //Console.WriteLine(">>>>>>>>>>>>>FindMaxK");
+            //int[] yoyo = { 11, 8, 3, 9, 7, 1, 2, 5 };
+            //Console.WriteLine("res:{0}", FindMaxK(yoyo, 3));
 
         }
 

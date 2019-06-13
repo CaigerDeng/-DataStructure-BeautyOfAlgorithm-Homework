@@ -22,17 +22,16 @@ namespace Chapter11
 
         }
 
-        //加入了替换检测的冒牌排序        
+        //加入了替换检测的冒泡排序        
         static public int[] BubbleSort(int[] arr, int n)
         {
             if (n <= 1)
             {
                 return arr;
             }
-            bool hasSwap = false;
             for (int i = 0; i < n; i++)
             {
-                hasSwap = false;
+                bool hasSwap = false;
                 for (int j = 0; j < n - i - 1; j++)
                 {
                     if (arr[j] > arr[j + 1])

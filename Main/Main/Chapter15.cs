@@ -245,8 +245,6 @@ namespace Chapter15
         //针对循环数组的二分法变形
         static public int BSearchForLoopArr(int[] arr, int n, int val)
         {
-
-
             //用minValueIndex做标记这个并不合适，因为遍历(<n)求这个minValueIndex，同时也能找到val了...
             return BSearchForLoopArrDetail(arr, 0, n - 1, val);
         }
