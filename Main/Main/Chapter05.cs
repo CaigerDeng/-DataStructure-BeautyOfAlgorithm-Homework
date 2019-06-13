@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Chapter15;
+using Chapter12;
 
 namespace Chapter05
 {
@@ -8,22 +10,44 @@ namespace Chapter05
     {
         static public void Run()
         {
-            Array<int> tt = new Array<int>(4);
-            LRU(tt, 1, 4);
-            LRU(tt, 2, 4);
-            LRU(tt, 3, 4);
-            LRU(tt, 4, 4);
-            tt.PrintAll();
+            //Array<int> tt = new Array<int>(4);
+            //LRU(tt, 1, 4);
+            //LRU(tt, 2, 4);
+            //LRU(tt, 3, 4);
+            //LRU(tt, 4, 4);
+            //tt.PrintAll();
 
-            LRU(tt, 2, 4);
-            tt.PrintAll();
+            //LRU(tt, 2, 4);
+            //tt.PrintAll();
 
-            LRU(tt, 3, 4);
-            tt.PrintAll();
+            //LRU(tt, 3, 4);
+            //tt.PrintAll();
 
-            LRU(tt, 3, 4);
-            tt.PrintAll();
+            //LRU(tt, 3, 4);
+            //tt.PrintAll();
 
+            //Pra.p2Array tt = new Pra.p2Array(6);
+            //tt.Add(1);
+            //tt.Add(5);
+            //tt.Add(3);
+            //tt.PrintAll(); // 1 3 5
+
+            //tt.Add(0);
+            //tt.Remove(5);
+            //tt.PrintAll(); // 0 1 3
+
+            //tt.Set(0, 99);
+            //tt.PrintAll(); //1 3 99
+
+            int[] a = { 1, 2, 4 };
+            int[] b = { 6,33, 90 };
+            int[] res = Pra.MergeTwo(a, b);
+
+            for (int i = 0; i < res.Length; i++)
+            {
+                Console.Write(res[i] + " ");
+            }
+            Console.WriteLine();
 
         }
 
@@ -42,7 +66,7 @@ namespace Chapter05
                     arr.RemoveAt(arr.Length);
                 }
             }
-            arr.Insert(0,val);
+            arr.Insert(0, val);
 
         }
 
@@ -171,49 +195,219 @@ namespace Chapter05
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
+    //>>>>>>>>>>>>>>>>>>>>>练习 实现部分>>>>>>>>>>>>>>>>>>>>>>
+    public sealed class Pra
+    {
+        //p1:实现一个支持动态扩容的数组
+        public sealed class p1Array
+        {
+            private int cap;
+            private int len;
+            public int length => len;
+            private int[] data;
+
+            public p1Array(int capacity)
+            {
+                cap = capacity;
+                data = new int[cap];
+                len = 0;
+            }
+
+            public void Expand(int size)
+            {
+                if (size <= cap)
+                {
+                    return;
+                }
+                cap = size;
+                int[] newData = new int[cap];
+                for (int i = 0; i < cap; i++)
+                {
+                    newData[i] = data[i];
+                }
+                data = newData;
+            }
+
+            public void Add(int val)
+            {
+                if (len == cap)
+                {
+                    Expand(cap * 2);
+                }
+                data[len] = val;
+                len++;
+            }
+
+            public int IndexOf(int val)
+            {
+                int res = -1;
+                if (len == 0)
+                {
+                    return res;
+                }
+                if (data[len - 1] == val)
+                {
+                    return len - 1;
+                }
+                for (int i = 0; i < len; i++)
+                {
+                    if (data[i] == val)
+                    {
+                        res = i;
+                        break;
+                    }
+                }
+                return res;
+            }
+
+            public void Remove(int val)
+            {
+                int index = IndexOf(val);
+                if (index == -1)
+                {
+                    return;
+                }
+                RemoveAt(index);
+            }
+
+            public void RemoveAt(int index)
+            {
+                if (index < 0 || index > len - 1)
+                {
+                    return;
+                }
+                for (int i = index + 1; i <= len - 1; i++)
+                {
+                    data[i - 1] = data[i];
+                }
+                len--;
+            }
+
+        }
+
+        //p2:实现一个大小固定的有序数组，支持动态增删改操作
+        public sealed class p2Array
+        {
+            private int cap;
+            private int len;
+            public int length => len;
+            private int[] data;
+
+            public p2Array(int capacity)
+            {
+                cap = capacity;
+                data = new int[cap];
+                len = 0;
+            }
+
+            public void Set(int index, int val)
+            {
+                if (index < 0 || index >= len)
+                {
+                    return;
+                }
+                data[index] = val;
+                //使用快排，保持有序
+                TestChapter12.QuickSort(data, len);
+            }
+
+            public void Add(int val)
+            {
+                if (len >= cap)
+                {
+                    return;
+                }
+                data[len] = val;
+                len++;
+                //使用快排，保持有序
+                TestChapter12.QuickSort(data, len);
+            }
+
+            public int IndexOf(int val)
+            {
+                //使用二分查找
+                return TestChapter15.BSearch(data, len, val);
+            }
+
+            public void Remove(int val)
+            {
+                int index = IndexOf(val);
+                if (index == -1)
+                {
+                    return;
+                }
+                RemoveAt(index);
+            }
+
+            public void RemoveAt(int index)
+            {
+                if (index < 0 || index > len - 1)
+                {
+                    return;
+                }
+                for (int i = index + 1; i <= len - 1; i++)
+                {
+                    data[i - 1] = data[i];
+                }
+                len--;
+            }
+
+            public void PrintAll()
+            {
+                for (int i = 0; i < len; i++)
+                {
+                    Console.Write(data[i] + " ");
+                }
+                Console.WriteLine();
+            }
+
+        }
+
+        //p3:实现两个有序数组合并为一个有序数组
+        static public int[] MergeTwo(int[] a, int[] b)
+        {
+            int[] res = new int[a.Length + b.Length];
+            int aIndex = 0;
+            int bIndex = 0;
+            int i = 0;
+            bool aPass = false;
+            bool bPass = false;
+            while (aIndex <= a.Length - 1 || bIndex <= b.Length - 1) //让两个index都走到尽头
+            {
+                if (aPass)
+                {
+                    res[i++] = b[bIndex++];
+                    continue;
+                }
+                if (bPass)
+                {
+                    res[i++] = a[aIndex++];
+                    continue;
+                }
+                if (a[aIndex] <= b[bIndex])
+                {
+                    res[i++] = a[aIndex++];
+                }
+                else
+                {
+                    res[i++] = b[bIndex++];
+                }
+                if (aIndex > a.Length - 1)
+                {
+                    aPass = true;
+                }
+                if (bIndex > b.Length - 1)
+                {
+                    bPass = true;
+                }
+            }
+            return res;
+        }
+
+    }
 
 
 }

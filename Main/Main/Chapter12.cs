@@ -172,7 +172,7 @@ namespace Chapter12
                 }
             }
             tmp = arr[i];
-            arr[i] = arr[right];
+            arr[i] = pivot;
             arr[right] = tmp;
             return i;
         }
