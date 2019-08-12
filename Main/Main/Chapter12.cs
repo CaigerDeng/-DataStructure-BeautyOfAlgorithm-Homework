@@ -13,13 +13,13 @@ namespace Chapter12
             //int[] b = { 1, 9 };
             //PrintArr(Merge(arr, a, b));
 
-            int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            MergeSort(arr, arr.Length);
-            PrintArr(arr);
-
             //int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            //QuickSort(arr, arr.Length);
+            //MergeSort(arr, arr.Length);
             //PrintArr(arr);
+
+            int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
+            QuickSort(arr, arr.Length);
+            PrintArr(arr);
 
             //Console.WriteLine(">>>>>>>>>>>>>FindMaxK");
             //int[] yoyo = { 11, 8, 3, 9, 7, 1, 2, 5 };
@@ -139,6 +139,10 @@ namespace Chapter12
         //快速排序
         static public void QuickSort(int[] arr, int n)
         {
+            if (n <= 1)
+            {
+                return;
+            }
             QuickSortDetail(arr, 0, n - 1);
         }
 
@@ -148,9 +152,9 @@ namespace Chapter12
             {
                 return;
             }
-            int pivot = partition(arr, left, right);
-            QuickSortDetail(arr, left, pivot - 1);
-            QuickSortDetail(arr, pivot + 1, right);
+            int p = partition(arr, left, right);
+            QuickSortDetail(arr, left, p - 1);
+            QuickSortDetail(arr, p + 1, right);
         }
 
         static public int partition(int[] arr, int left, int right)
@@ -158,7 +162,7 @@ namespace Chapter12
             int pivot = arr[right];
             int i = left;
             int tmp;
-            for (int j = left; j < right; j++)
+            for (int j = left; j < right; j++) 
             {
                 if (arr[j] < pivot)
                 {

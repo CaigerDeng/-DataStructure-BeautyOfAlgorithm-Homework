@@ -57,11 +57,11 @@ namespace Chapter11
             {
                 return arr;
             }
-            for (int i = 1; i < n; i++)
+            for (int i = 1; i < n; i++) //此处是未排序区间
             {
                 int compareVal = arr[i]; //拿来比较的那个数
                 int j = i - 1;
-                for (j = i - 1; j >= 0; j--)
+                for (j = i - 1; j >= 0; j--) //此处是已排序区间
                 {
                     //如果前面的数更大
                     if (arr[j] > compareVal)
@@ -90,7 +90,7 @@ namespace Chapter11
             {
                 int minValIndex = i;
                 //因为已有minValIndex = i，所以j从i+1开始
-                for (int j = i + 1; j < n; j++)
+                for (int j = i + 1; j < n; j++) //未排序区间找最小值
                 {
                     if (arr[j] < arr[minValIndex])
                     {
