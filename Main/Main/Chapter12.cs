@@ -8,18 +8,16 @@ namespace Chapter12
     {
         static public void Run()
         {
-            //int[] arr = { 3, 2, 9, 1 };
-            //int[] a = { 2, 3 };
-            //int[] b = { 1, 9 };
-            //PrintArr(Merge(arr, a, b));
+            //数组不能直接赋值
 
-            //int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            //MergeSort(arr, arr.Length);
-            //PrintArr(arr);
 
             int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            QuickSort(arr, arr.Length);
+            MergeSort(arr, arr.Length);
             PrintArr(arr);
+
+            //int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
+            //QuickSort(arr, arr.Length);
+            //PrintArr(arr);
 
             //Console.WriteLine(">>>>>>>>>>>>>FindMaxK");
             //int[] yoyo = { 11, 8, 3, 9, 7, 1, 2, 5 };
@@ -59,31 +57,17 @@ namespace Chapter12
             int i = 0;
             while (aIndex <= mid && bIndex <= right) //总会有一个index走到尽头
             {
-                if (arr[aIndex] <= arr[bIndex])
-                {
-                    res[i++] = arr[aIndex++];
-                }
-                else
-                {
-                    res[i++] = arr[bIndex++];
-                }
+                res[i++] = arr[aIndex] <= arr[bIndex] ? arr[aIndex++] : arr[bIndex++];
             }
-            int beginIndex = aIndex;
-            int endIndex = mid;
+            if (aIndex <= mid)
+            {
+                Array.Copy(arr, aIndex, res, i, mid - aIndex + 1);
+            }
             if (bIndex <= right)
             {
-                beginIndex = bIndex;
-                endIndex = right;
+                Array.Copy(arr, bIndex, res, i, right - bIndex + 1);
             }
-            for (int j = beginIndex; j <= endIndex; j++, i++)
-            {
-                res[i] = arr[j];
-            }
-            //数组不能直接赋值
-            for (int j = 0; j < len; j++)
-            {
-                arr[left + j] = res[j]; // keypoint:left + j
-            }
+            Array.Copy(res, 0, arr, left, len);
 
         }
 
@@ -110,14 +94,7 @@ namespace Chapter12
                     res[i++] = arr[aIndex++];
                     continue;
                 }
-                if (arr[aIndex] <= arr[bIndex])
-                {
-                    res[i++] = arr[aIndex++];
-                }
-                else
-                {
-                    res[i++] = arr[bIndex++];
-                }
+                res[i++] = arr[aIndex] <= arr[bIndex] ? arr[aIndex++] : arr[bIndex++];               
                 if (aIndex > mid)
                 {
                     aPass = true;
@@ -126,13 +103,8 @@ namespace Chapter12
                 {
                     bPass = true;
                 }
-
             }
-            //数组不能直接赋值
-            for (int j = 0; j < len; j++)
-            {
-                arr[left + j] = res[j]; // keypoint:left + j
-            }
+            Array.Copy(res, 0, arr, left, len);
 
         }
 
@@ -162,7 +134,7 @@ namespace Chapter12
             int pivot = arr[right];
             int i = left;
             int tmp;
-            for (int j = left; j < right; j++) 
+            for (int j = left; j < right; j++)
             {
                 if (arr[j] < pivot)
                 {
@@ -184,7 +156,7 @@ namespace Chapter12
         //找第K大元素
         //根据题意需要从大到小排序
         //以下标pivot为区分点，分为arr[0,pivot-1],arr[pivot],arr[pivot+1,n-1]三组，比arr[pivot]大的放前面，否则放后面
-        //如果pivot+1=N，计算完毕；如果pivot+1<K，则从后面那组找，反之从前面那组找
+        //如果pivot+1=K，计算完毕；如果pivot+1<K，则从后面那组找，反之从前面那组找
         static public int FindMaxK(int[] arr, int K)
         {
             int res;
