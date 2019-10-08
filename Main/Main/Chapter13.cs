@@ -54,7 +54,7 @@ namespace Chapter13
                 {
                     temp[j] = buckets[i, j];
                 }
-                TestChapter12.QuickSort(temp, len);
+                TestChapter12.QuickSort(temp);
                 for (int j = 0; j < len; j++)
                 {
                     arr[startIndexOfArr + j] = temp[j];

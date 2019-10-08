@@ -11,13 +11,13 @@ namespace Chapter12
             //数组不能直接赋值
 
 
-            int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            MergeSort(arr, arr.Length);
-            PrintArr(arr);
-
             //int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            //QuickSort(arr, arr.Length);
+            //MergeSort(arr);
             //PrintArr(arr);
+
+            int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
+            QuickSort(arr);
+            PrintArr(arr);
 
             //Console.WriteLine(">>>>>>>>>>>>>FindMaxK");
             //int[] yoyo = { 11, 8, 3, 9, 7, 1, 2, 5 };
@@ -26,8 +26,9 @@ namespace Chapter12
         }
 
         //归并排序
-        static public void MergeSort(int[] arr, int n)
+        static public void MergeSort(int[] arr)
         {
+            int n = arr.Length;
             if (n <= 1)
             {
                 return;
@@ -109,8 +110,9 @@ namespace Chapter12
         }
 
         //快速排序
-        static public void QuickSort(int[] arr, int n)
+        static public void QuickSort(int[] arr)
         {
+            int n = arr.Length;
             if (n <= 1)
             {
                 return;

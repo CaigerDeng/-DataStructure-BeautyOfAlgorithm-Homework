@@ -9,30 +9,31 @@ namespace Chapter11
         static public void Run()
         {
             //int[] arr = { 3, 5, 4, 1, 2, 6 };
-            //int[] res = BubbleSort(arr, arr.Length);
-            //PrintArr(res);
+            //BubbleSort(arr);
+            //PrintArr(arr);
 
             //int[] arr = { 4, 5, 6, 1, 3, 2 };
-            //int[] res = InsertionSort(arr, arr.Length);
-            //PrintArr(res);
+            //InsertionSort(arr);
+            //PrintArr(arr);
 
             int[] arr = { 4, 5, 6, 3, 2, 1 };
-            int[] res = SelectionSort(arr, arr.Length);
-            PrintArr(res);
+            SelectionSort(arr);
+            PrintArr(arr);
 
         }
 
         //加入了替换检测的冒泡排序        
-        static public int[] BubbleSort(int[] arr, int n)
+        static public void BubbleSort(int[] arr)
         {
+            int n = arr.Length;
             if (n <= 1)
             {
-                return arr;
+                return;
             }
             for (int i = 0; i < n; i++)
             {
                 bool hasSwap = false;
-                for (int j = 0; j < n - i - 1; j++)
+                for (int j = 0; j < n - i - 1; j++) //保证每一回都冒一个最大到后面去
                 {
                     if (arr[j] > arr[j + 1])
                     {
@@ -44,49 +45,49 @@ namespace Chapter11
                 }
                 if (!hasSwap)
                 {
-                    break;
+                    return;
                 }
             }
-            return arr;
         }
 
         //插入排序
-        static public int[] InsertionSort(int[] arr, int n)
+        static public void InsertionSort(int[] arr)
         {
+            int n = arr.Length;
             if (n <= 1)
             {
-                return arr;
+                return;
             }
             for (int i = 1; i < n; i++) //此处是未排序区间
             {
                 int compareVal = arr[i]; //拿来比较的那个数
-                int j = i - 1;
+                int j;
                 for (j = i - 1; j >= 0; j--) //此处是已排序区间
                 {
                     //如果前面的数更大
                     if (arr[j] > compareVal)
                     {
-                        arr[j + 1] = arr[j];
+                        arr[j + 1] = arr[j]; //不要忘记此处是已排序区间
                     }
                     else
                     {
-                        break;
+                        break; //这不是能省略的地方
                     }
                 }
                 arr[j + 1] = compareVal; //写成a[i] = compareVal是不对的，前面辛辛苦苦挪了位置，此时arr[i]的值可能会变
             }
-            return arr;
         }
 
         //选择排序
         //看上去让人想起插入排序，但插入排序会有数据搬移操作，而选择排序是直接交换位置
-        static public int[] SelectionSort(int[] arr, int n)
+        static public void SelectionSort(int[] arr)
         {
+            int n = arr.Length;
             if (n <= 1)
             {
-                return arr;
+                return;
             }
-            for (int i = 0; i < n - 1; i++) //最后一个数没有求minValIndex的必要了，所以是i<n-1
+            for (int i = 0; i < n - 1; i++) //最后一个数没有求minValIndex的必要，所以是i<n-1
             {
                 int minValIndex = i;
                 //因为已有minValIndex = i，所以j从i+1开始
@@ -101,7 +102,6 @@ namespace Chapter11
                 arr[i] = arr[minValIndex];
                 arr[minValIndex] = temp;
             }
-            return arr;
         }
 
         static public void PrintArr(int[] arr)

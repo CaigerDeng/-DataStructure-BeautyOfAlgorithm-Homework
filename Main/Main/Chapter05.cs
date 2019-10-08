@@ -311,7 +311,7 @@ namespace Chapter05
                 }
                 data[index] = val;
                 //使用快排，保持有序
-                TestChapter12.QuickSort(data, len);
+                TestChapter12.QuickSort(data);
             }
 
             public void Add(int val)
@@ -323,7 +323,7 @@ namespace Chapter05
                 data[len] = val;
                 len++;
                 //使用快排，保持有序
-                TestChapter12.QuickSort(data, len);
+                TestChapter12.QuickSort(data);
             }
 
             public int IndexOf(int val)
