@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+//链表
 namespace Chapter06
 {
     public class Node<T>
@@ -59,6 +60,9 @@ namespace Chapter06
             tt.Insert(tt.Length, 2);
             tt.Insert(tt.Length, 5);
             tt.PrintAll();
+            tt.Insert(1,666);
+            tt.PrintAll();
+
 
         }
 
@@ -259,24 +263,23 @@ namespace Chapter06
         public Node<T> AddToBegin(T newItem)
         {
             Node<T> p = new Node<T>(newItem);
-            var q = First;
-            p.Next = q;
+            p.Next = First;
             Head.Next = p;
             Length++;
             return p;
         }
 
-        //从position后插入
-        public Node<T> Insert(int position, T newItem)
+        //从index上插入
+        public Node<T> Insert(int index, T newItem)
         {
-            if (position < 0 || position > Length)
+            if (index < 0 || index > Length) //支持末尾插入
             {
                 return null;
             }
             var p = Head;
             //前进
             int pos = 1;
-            while (p != null && pos <= position)
+            while (p != null && pos <= index)  //这里的p记录是为了index的前一个结点
             {
                 p = p.Next;
                 pos++;
@@ -317,7 +320,7 @@ namespace Chapter06
                 q = p;
                 p = p.Next;
             }
-            if (p == null)
+            if (p == null) //如果没找到
             {
                 return null;
             }

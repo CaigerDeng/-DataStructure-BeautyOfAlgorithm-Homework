@@ -30,7 +30,7 @@ namespace Main
 
         static void Main(string[] args)
         {
-            TestChapter24.Run();
+            TestChapter06.Run();
 
             //TestChapter12.Run();
 

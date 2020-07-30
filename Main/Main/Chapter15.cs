@@ -11,7 +11,7 @@ namespace Chapter15
         static public void Run()
         {
             //int[] arr = { 1, 5, 7, 10, 22, 40 };
-            //Console.WriteLine("find index:{0}", BSearch(arr, arr.Length, 22));
+            //Console.WriteLine("find index:{0}", BSearch(arr,22));
 
             //Console.WriteLine("find index:{0}", BSearch_1(arr, arr.Length, 22));
 
@@ -27,8 +27,9 @@ namespace Chapter15
         }
 
         //
-        public static int BSearch(int[] arr, int n, int val)
+        public static int BSearch(int[] arr, int val)
         {
+            int n = arr.Length;
             int low = 0;
             int high = n - 1;
             while (low <= high)
@@ -255,7 +256,7 @@ namespace Chapter15
             if (arr[low] <= arr[mid] && arr[mid] <= arr[high])
             {
                 //已经是从小到大排好序的数组
-                return BSearch(arr, arr.Length, val);
+                return BSearch(arr, val);
             }
             if (arr[mid] == val)
             {

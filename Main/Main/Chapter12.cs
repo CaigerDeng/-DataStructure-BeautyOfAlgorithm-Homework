@@ -12,7 +12,7 @@ namespace Chapter12
 
 
             //int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };
-            //MergeSort(arr);
+            //MergeiSort(arr);
             //PrintArr(arr);
 
             int[] arr = { 11, 8, 3, 9, 7, 1, 2, 5 };

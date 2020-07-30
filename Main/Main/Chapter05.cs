@@ -4,6 +4,7 @@ using System.Text;
 using Chapter15;
 using Chapter12;
 
+//数组
 namespace Chapter05
 {
     public class TestChapter05
@@ -39,16 +40,23 @@ namespace Chapter05
             //tt.Set(0, 99);
             //tt.PrintAll(); //1 3 99
 
-            int[] a = { 1, 2, 4 };
-            int[] b = { 6,33, 90 };
-            int[] res = Pra.MergeTwo(a, b);
+            //int[] a = { 1, 2, 4 };
+            //int[] b = { 6,33, 90 };
+            //int[] res = Pra.MergeTwo(a, b);
 
-            for (int i = 0; i < res.Length; i++)
+            //for (int i = 0; i < res.Length; i++)
+            //{
+            //    Console.Write(res[i] + " ");
+            //}
+            //Console.WriteLine();
+
+            Array<int> arr = new Array<int>(5);
+            for (int i = 0; i < 4; i++)
             {
-                Console.Write(res[i] + " ");
+                arr.Add(i);
             }
-            Console.WriteLine();
-
+            arr.Insert(4,666);
+            arr.PrintAll();
         }
 
         static public void LRU(Array<int> arr, int val, int capacity)
@@ -108,7 +116,7 @@ namespace Chapter05
 
         public void Insert(int index, T newItem)
         {
-            if (index < 0 || index > _length)
+            if (index < 0 || index > _length) //这里是支持末尾添加的
             {
                 throw new IndexOutOfRangeException("IndexOutOfRangeException");
             }
@@ -116,7 +124,7 @@ namespace Chapter05
             {
                 throw new OutOfMemoryException("OutOfMemoryException");
             }
-            for (int i = _length - 1; i >= index; i--)
+            for (int i = _length - 1; i >= index; i--) //倒序
             {
                 _data[i + 1] = _data[i];
             }

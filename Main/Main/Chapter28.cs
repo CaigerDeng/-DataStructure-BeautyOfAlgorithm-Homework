@@ -22,7 +22,7 @@ namespace Chapter28
             //h.PrintAll();
 
             int[] arr = { 9, 6, 3, 1, 5 };
-            HeapSort2(arr, arr.Length);
+            HeapSort1(arr, arr.Length);
 
         }
 
@@ -45,7 +45,7 @@ namespace Chapter28
             }
             //sort
             int k = n;
-            while (k > 1)
+            while (k > 1)  //元素逐渐减少，到最后一个元素就没有排序必要了
             {
                 h.Swap(1, k);
                 k--;
