@@ -688,23 +688,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\41671\\.nuget\\packages\\": {},
+    "C:\\Users\\2144\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\MyVSProject\\《数据结构与算法之美》测试\\-DataStructure-BeautyOfAlgorithm-Homework\\Main\\Main\\Main.csproj",
+      "projectUniqueName": "G:\\-DataStructure-BeautyOfAlgorithm-Homework\\Main\\Main\\Main.csproj",
       "projectName": "Main",
-      "projectPath": "C:\\MyVSProject\\《数据结构与算法之美》测试\\-DataStructure-BeautyOfAlgorithm-Homework\\Main\\Main\\Main.csproj",
-      "packagesPath": "C:\\Users\\41671\\.nuget\\packages\\",
-      "outputPath": "C:\\MyVSProject\\《数据结构与算法之美》测试\\-DataStructure-BeautyOfAlgorithm-Homework\\Main\\Main\\obj\\",
+      "projectPath": "G:\\-DataStructure-BeautyOfAlgorithm-Homework\\Main\\Main\\Main.csproj",
+      "packagesPath": "C:\\Users\\2144\\.nuget\\packages\\",
+      "outputPath": "G:\\-DataStructure-BeautyOfAlgorithm-Homework\\Main\\Main\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\41671\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\2144\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -712,6 +712,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "G:\\NuGetPackage": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -729,23 +730,16 @@
       "netcoreapp2.1": {
         "dependencies": {
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
           }
         },
         "imports": [
-          "net461",
-          "net462",
-          "net47",
-          "net471",
-          "net472",
-          "net48"
+          "net461"
         ],
         "assetTargetFallback": true,
-        "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        "warn": true
       }
     }
   }

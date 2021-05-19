@@ -10,169 +10,105 @@ namespace Chapter28
     {
         static public void Run()
         {
-            //int[] arr = { 33, 27, 21, 16, 13, 15, 19, 5, 6, 7, 8, 1, 2, 12 };
-            //Heap h = new Heap(30);
-            //for (int i = 0; i < arr.Length; i++)
-            //{
-            //    h.Insert(arr[i]);
-            //}
-            //h.PrintAll();
-
-            //h.RemoveMax();
-            //h.PrintAll();
-
-            int[] arr = { 9, 6, 3, 1, 5 };
-            HeapSort1(arr, arr.Length);
+            // leetcode 703. 数据流中的第 K 大元素
+            // https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/
 
         }
-
-        public static void PrintAll(int[] a)
-        {
-            for (int i = 1; i <= a.Length; i++)
-            {
-                Console.Write(a[i] + " ");
-            }
-            Console.WriteLine();
-        }
-
-        //堆排序（建堆：堆化自下而上）
-        static public void HeapSort1(int[] arr, int n)
-        {
-            Heap h = new Heap(n);
-            for (int i = 0; i < n; i++)
-            {
-                h.Insert(arr[i]);
-            }
-            //sort
-            int k = n;
-            while (k > 1)  //元素逐渐减少，到最后一个元素就没有排序必要了
-            {
-                h.Swap(1, k);
-                k--;
-                h.HeapifyFromTop(k, 1);
-            }
-            h.PrintAll();
-        }
-
-        //堆排序（建堆：堆化自上而下）
-        static public void HeapSort2(int[] arr, int n)
-        {
-            Heap h = new Heap(n);
-            h.ResetData(arr);
-            for (int i = n / 2; i >= 1; i--)
-            {
-                h.HeapifyFromTop(n, i);
-            }
-            //sort
-            int k = n;
-            while (k > 1)
-            {
-                h.Swap(1, k);
-                k--;
-                h.HeapifyFromTop(k, 1);
-            }
-            h.PrintAll();
-        }
-
-
 
     }
 
-    //数组存储的（大顶）堆
-    public class Heap
+    /// <summary>
+    /// 小顶堆
+    /// </summary>
+    public class MinHeap
     {
         private int[] data;
-        private int capacity;
-        private int count;
+        public int capacity;
+        public int count;
 
-        public Heap(int capacity)
+        public MinHeap(int capacity)
         {
-            data = new int[capacity + 1];  //索引0不存东西
             this.capacity = capacity;
+            // 索引0不放数据，从索引1开始放，这样方便堆化时算其他索引，比如：求索引2和3的父索引，直接整除2得到1
+            data = new int[capacity + 1];
             count = 0;
+
         }
 
-        //堆化 自上而下
-        public void HeapifyFromTop(int n, int i)
+        public void Add(int val)
         {
-            //因为要保持堆顶元素是最大，所以需要判断子节点谁最大
-            while (true)
+            if (count < capacity)
             {
-                int maxPos = i;
-                if (2 * i <= n && data[i] < data[2 * i])
-                {
-                    maxPos = 2 * i;
-                }
-                else if (2 * i + 1 <= n && data[i] < data[2 * i + 1])
-                {
-                    maxPos = 2 * i + 1;
-                }
-                else
-                {
-                    break;
-                }
-                Swap(i, maxPos);
-                i = maxPos;
+                count++;
+                data[count] = val;
+                Up(count);
+            }
+            // val比top大才会加入
+            else if (val > data[1])
+            {
+                data[1] = val;
+                Down(1);
             }
 
         }
 
-        //交换索引为aIndex，bIndex的值
-        public void Swap(int aIndex, int bIndex)
+        /// <summary>
+        /// 上浮
+        /// </summary>
+        /// <param name="index"></param>
+        public void Up(int index)
+        {
+            // 因为索引0不放数据，所以其他索引直接整除2即可（如果索引0放数据，求索引2的父索引还要减法这些）
+            while (index / 2 > 0 && data[index] < data[index / 2])
+            {
+                Swap(index, index / 2);
+                index = index / 2;
+            }
+
+        }
+
+        /// <summary>
+        /// 交换索引为aIndex，bIndex的值
+        /// </summary>
+        /// <param name="aIndex"></param>
+        /// <param name="bIndex"></param>
+        private void Swap(int aIndex, int bIndex)
         {
             int temp = data[aIndex];
             data[aIndex] = data[bIndex];
             data[bIndex] = temp;
+
         }
 
-
-        public void Insert(int val)
+        /// <summary>
+        /// 下沉
+        /// </summary>
+        /// <param name="index"></param>
+        private void Down(int index)
         {
-            if (count == capacity)
+            int minPos = index;
+            int leftChildIndex = 2 * index;
+            int rightChildIndex = 2 * index + 1;
+            if (leftChildIndex <= count && data[minPos] > data[leftChildIndex])
             {
-                return;
+                minPos = leftChildIndex;
             }
-            //插入
-            count++;
-            data[count] = val;
-            //堆化 自下而上
-            int i = count;
-            while (i / 2 > 0 && data[i] > data[i / 2]) //跳过索引0
+            if (rightChildIndex <= count && data[minPos] > data[rightChildIndex])
             {
-                Swap(i, i / 2);
-                i = i / 2;
+                minPos = rightChildIndex;
             }
+            if (minPos != index)
+            {
+                Swap(index, minPos);
+                Down(minPos);
+            }
+
         }
 
-        //删除堆顶
-        public void RemoveMax()
+        public int GetTop()
         {
-            if (count == 0)
-            {
-                return;
-            }
-            data[1] = data[count];
-            count--;
-            HeapifyFromTop(count, 1);
-        }
+            return data[1];
 
-        public void PrintAll()
-        {
-            for (int i = 1; i <= count; i++)
-            {
-                Console.Write(data[i] + " ");
-            }
-            Console.WriteLine();
-        }
-
-        public void ResetData(int[] a)
-        {
-            data = new int[capacity + 1];  //索引0不存东西
-            for (int i = 0; i < a.Length; i++)
-            {
-                data[i + 1] = a[i];
-            }
-            count = a.Length;
         }
 
     }
